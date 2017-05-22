@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton id="connectButton" fx:id="connectButton" buttonType="RAISED" layoutX="226.0" layoutY="61.0" ripplerFill="#d1d1d1c3" style="-fx-background-color: #44aeff;" text="Connect" textFill="WHITE" />
+      <JFXTextField id="portField" fx:id="portField" alignment="TOP_LEFT" focusColor="#44aeff" labelFloat="true" layoutX="150.0" layoutY="61.0" prefHeight="25.0" prefWidth="60.0" promptText="END_IP" />
+      <JFXButton id="sdkPathSelectorButton" fx:id="sdkPathButton" layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: #303030;" text="SELECT SDK PATH" textFill="#757575" />
+      <Label fx:id="sdkPathLabel" layoutX="14.0" layoutY="14.0" prefHeight="45.0" prefWidth="271.0" text="Label" textFill="#7f7f7f">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
