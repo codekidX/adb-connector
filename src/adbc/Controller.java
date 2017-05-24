@@ -35,16 +35,19 @@ public class Controller implements Initializable {
     PreferenceUtil preferenceUtil;
     String sdkPath;
     String clippedIp;
-    private static final String COMMAND_SUFFIX = "\\platform-tools\\adb connect ";
+    private static final String COMMAND_SUFFIX_WIN = "\\platform-tools\\adb connect ";
+    private static final String COMMAND_SUFFIX_MAC = "/platform-tools/adb connect ";
+
+    private String os;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        os = System.getProperty("os.name").toLowerCase();
         preferenceUtil = new PreferenceUtil();
         try {
             String ip = InetAddress.getLocalHost().getHostAddress();
             clippedIp = ip.substring(0,ip.lastIndexOf(".") + 1);
-            log(clippedIp);
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -78,7 +81,7 @@ public class Controller implements Initializable {
             sdkPathLabel.setText("Select Android SDK Path!");
         } else {
             if(getEndIp() !=null) {
-                String fullCmd = sdkPath + COMMAND_SUFFIX + clippedIp + getEndIp() + ":5555";
+                String fullCmd = getCommandPrefix() + sdkPath + getCommandSuffix() + clippedIp + getEndIp() + ":5555";
 
                 try {
                     Process process = Runtime.getRuntime().exec(fullCmd);
@@ -87,7 +90,6 @@ public class Controller implements Initializable {
                     while((s = bufferedInputStream.readLine()) != null) {
                         if(s.contains("connected")) {
                             sdkPathLabel.setText("CONNECTED");
-                            log(s);
                         }
                     }
 
@@ -104,6 +106,22 @@ public class Controller implements Initializable {
             return null;
         } else {
             return portField.getText();
+        }
+    }
+
+    private String getCommandSuffix() {
+       if(os.startsWith("windows")) {
+           return COMMAND_SUFFIX_WIN;
+       } else {
+           return COMMAND_SUFFIX_MAC;
+       }
+    }
+
+    private String getCommandPrefix() {
+        if(os.startsWith("windows")) {
+            return "";
+        } else {
+            return "./";
         }
     }
 
